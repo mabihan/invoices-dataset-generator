@@ -1,4 +1,4 @@
-# invoice-dataset-generator
+# invoices-dataset-generator
 
 A python script that generates fake invoices.
 
@@ -38,24 +38,24 @@ optional arguments:
 Basic usage : 
 ```
 $ python generate.py -b 2
-✍️  Generating invoice 1/2
-✍️  Generating invoice 2/2
+✨  Generating invoice 1/2
+✨  Generating invoice 2/2
 ```
 
 Use specific locales for fake data : 
 ```
 $ python generate.py -l fr_FR de_DE en_GB es_ES -b 5
-✍️  Generating invoice 1/5
-✍️  Generating invoice 2/5
-✍️  Generating invoice 3/5
-✍️  Generating invoice 4/5
-✍️  Generating invoice 5/5
+✨  Generating invoice 1/5
+✨  Generating invoice 2/5
+✨  Generating invoice 3/5
+✨  Generating invoice 4/5
+✨  Generating invoice 5/5
 ```
 
 Add some defects : 
 ```
 $ python generate.py -d
-✍️  Generating invoice 1/1
+✨  Generating invoice 1/1
 ```
 
 The invoices will be created in the `./dist` folder, or in the folder you want, using the `-o` flag.

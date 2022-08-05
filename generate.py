@@ -489,7 +489,7 @@ def main():
     os.makedirs(os.path.join("dist"), exist_ok=True)
 
     for i in range (1, commandLineSettings.batch_size + 1):
-        print("✍️  Generating invoice %d/%d"%(i, commandLineSettings.batch_size))
+        print("✨ Generating invoice %d/%d"%(i, commandLineSettings.batch_size))
 
         # Generate fake invoice data
         start_time = time.time()
