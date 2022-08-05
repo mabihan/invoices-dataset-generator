@@ -1,0 +1,79 @@
+{
+    "client": {
+        "address": "3086 Peterson Light\nNorth Jeffrey, MN 52326",
+        "catch_phrase": "Cross-platform optimizing middleware",
+        "company": "Arnold Inc",
+        "country": "Norfolk Island",
+        "job": "Radiographer, therapeutic",
+        "mail": "michael-norton@hotmail.com",
+        "name": "Michael Norton",
+        "phone_number": "2391088182",
+        "ssn": "450-50-1186",
+        "username": "wrighttyler",
+        "website": [
+            "https://www.camacho.net/",
+            "https://turner-matthews.com/",
+            "http://www.welch-johnson.com/"
+        ]
+    },
+    "logo": "google-2015.png",
+    "order": [{
+            "description": "Record list country until.",
+            "name": "Reach scientist.",
+            "quantity": 6,
+            "unit_cost": 41.138428836646895
+        },
+        {
+            "description": "Agency value job professional population or.",
+            "name": "Main cultural beat.",
+            "quantity": 1,
+            "unit_cost": 12.77761698559241
+        },
+        {
+            "description": "Family partner edge the simply recognize serve.",
+            "name": "Police large open.",
+            "quantity": 2,
+            "unit_cost": 71.80027357475652
+        },
+        {
+            "description": "Reach easy bring together team. Plan federal hit.",
+            "name": "Authority what mind.",
+            "quantity": 5,
+            "unit_cost": 47.84713768498427
+        },
+        {
+            "description": "Feeling station involve message where town.",
+            "name": "Seem enter plan.",
+            "quantity": 1,
+            "unit_cost": 14.006179050397051
+        }
+    ],
+    "supplier": {
+        "address": "7333 Luna Roads\nNorth Richard, ME 85004",
+        "catch_phrase": "Synergistic intermediate strategy",
+        "company": "Boyer, White and Williams",
+        "country": "United States Minor Outlying Islands",
+        "job": "Surveyor, hydrographic",
+        "mail": "kristi-riley@gmail.com",
+        "name": "Kristi Riley",
+        "phone_number": "(735)916-2665x64941",
+        "ssn": "114-25-3427",
+        "username": "michael96",
+        "website": [
+            "https://www.chapman.com/",
+            "http://dixon-lewis.com/",
+            "http://weiss.info/",
+            "https://gutierrez.net/"
+        ]
+    },
+    "total": {
+        "currency": [
+            "SRD",
+            "Surinamese dollar"
+        ],
+        "tax": 65.64506046303052,
+        "tax_rate": 10,
+        "total_after_tax": 722.0956650933357,
+        "total_before_tax": 656.4506046303052
+    }
+}

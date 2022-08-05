@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="{{ base_dir }}/templates/assets/js/jquery-1.10.2.min.js"></script>
+   <link href="{{ base_dir }}/templates/assets/css/bootstrap.min.css" rel="stylesheet">
+   <script src="{{ base_dir }}/templates/assets/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div bgcolor="#f6f6f6" style="color: #333; height: 100%; width: 100%;" height="100%" width="100%">
+    <table bgcolor="#f6f6f6" cellspacing="0" style="border-collapse: collapse; padding: 40px; width: 100%;" width="100%">
+        <tbody>
+            <tr>
+                <td width="5px" style="padding: 0;"></td>
+                <td style="clear: both; display: block; margin: 50px auto; max-width: 800px; padding-top:80px;">
+                    <table width="100%" cellspacing="0" style="border-collapse: collapse;">
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0;">
+                                    <a
+                                        href="#"
+                                        style="color: #348eda;"
+                                        target="_blank"
+                                    >
+                                        
+                                        <img
+                                            src="{{ base_dir }}/templates/assets/images/png/{{ invoice.logo }}"
+                                            alt="brand-logo"
+                                            style="height: 50px; max-width: 100%; width: auto;"
+                                        />
+                                        
+                                    </a>
+                                </td>
+                                <td style="color: #999; font-size: 12px; padding: 0; text-align: right;" align="right">
+                                    {{ invoice.metadata.date_edited.strftime('%B %Y')}}<br />
+                                    Invoice #{{ invoice.metadata.order_id }}<br />
+                                    {{ invoice.metadata.date_edited.strftime('%Y-%m-%d')}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="5px" style="padding: 0;"></td>
+            </tr>
+
+            <tr>
+                <td width="5px" style="padding: 0;"></td>
+                <td bgcolor="#FFFFFF" style="border: 1px solid #000; clear: both; display: block; margin: 0 auto; max-width: 800px; padding: 0;">
+                    <table width="100%" style="background: #f9f9f9; border-bottom: 1px solid #eee; border-collapse: collapse; color: #999;">
+                        <tbody>
+                            <tr>
+                                <td width="50%" style="padding: 20px;"><strong style="color: #333; font-size: 24px;">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.total_after_tax }}</strong> Paid</td>
+                                <td align="right" width="50%" style="padding: 20px;">Thanks for working with <span class="il">{{ invoice.supplier.company }}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="padding: 0;"></td>
+                <td width="5px" style="padding: 0;"></td>
+            </tr>
+            <tr>
+                <td width="5px" style="padding: 0;"></td>
+                <td style="border: 1px solid #000; border-top: 0; clear: both; display: block; margin: 0 auto; max-width: 800px; padding: 0;">
+                    <table width="80%"  cellspacing="0" style="border-collapse: collapse; border-left: 1px solid #000; margin: 0 auto;">
+                        <tbody>
+                            <tr>
+                                <td valign="top"  style="padding: 20px;">
+                                    <h3
+                                        style="
+                                            border-bottom: 1px solid #000;
+                                            color: #000;
+                                            font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+                                            font-size: 18px;
+                                            font-weight: bold;
+                                            line-height: 1.2;
+                                            margin: 0;
+                                            margin-bottom: 15px;
+                                            padding-bottom: 5px;
+                                        "
+                                    >
+                                        Summary for invoice #{{ invoice.metadata.order_id }}, {{ invoice.metadata.date_edited.strftime('%Y-%m-%d')}}
+                                    </h3>
+                                    <table cellspacing="0" style="width:100%; border-collapse: collapse; margin-bottom: 40px;">
+                                        <tbody>
+                                            {% for item in invoice.order %}
+                                            <tr>
+                                                <td style="padding: 5px 0;">{{ item.name }}, {{ item.quantity }} unit(s)</td>
+                                                <td align="right" style="padding: 5px 0;">{{ invoice.total.currency.sign }} {{ '%0.2f' % (item.quantity * item.unit_cost) }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                            <tr>
+                                                <td style="border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">Total </td>
+                                                <td align="right" style="border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.sub_total }}</td>
+                                            </tr>
+                                            {% if invoice.total.is_discount_included %}
+                                            <tr>
+                                                <td style="padding: 5px 0;">Discount ({{ invoice.total.discount_rate }}%)</td>
+                                                <td align="right" style="padding: 5px 0;">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.discount }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if invoice.total.is_shipping_included %}
+                                            <tr>
+                                                <td style="padding: 5px 0;">Shipping </td>
+                                                <td align="right" style="padding: 5px 0;">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.shipping }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            <tr>
+                                                <td style="padding: 5px 0;">Tax ({{ invoice.total.tax_rate }}%)</td>
+                                                <td align="right" style="padding: 5px 0;">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.tax }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">Total (incl. VAT)</td>
+                                                <td align="right" style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.total_after_tax }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="5px" style="padding: 0;"></td>
+            </tr>
+
+            <tr style="color: #666; font-size: 12px;">
+                <td width="5px" style="padding: 10px 0;"></td>
+                <td style="clear: both; display: block; margin: 0 auto; max-width: 800px; padding: 10px 0;">
+                    <table width="100%" cellspacing="0" style="border-collapse: collapse;">
+                        <tbody>
+                            <tr>
+                                <td width="40%" valign="top" style="padding: 10px 0;">
+                                    <h4 style="margin: 0;">Questions?</h4>
+                                    <p style="color: #666; font-size: 12px; font-weight: normal; margin-bottom: 10px;">
+                                        Please visit our
+                                        <a
+                                            href="#"
+                                            style="color: #666;"
+                                            target="_blank"
+                                        >
+                                            Support Center
+                                        </a>
+                                        with any questions.
+                                    </p>
+                                </td>
+                                <td width="10%" style="padding: 10px 0;">&nbsp;</td>
+                                <td width="40%" valign="top" style="padding: 10px 0;">
+                                    <h4 style="margin: 0;"><span class="il">{{ invoice.supplier.company }}</span></h4>
+                                    <p style="color: #666; font-size: 12px; font-weight: normal; margin-bottom: 10px;">
+                                        <a href="#">{{ invoice.supplier.address }}</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="5px" style="padding: 10px 0;"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<style type="text/css">
+body{margin-top:20px;}
+</style>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

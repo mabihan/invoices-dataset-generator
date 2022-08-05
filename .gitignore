@@ -1,0 +1,6 @@
+# python
+.venv
+dist
+
+# macOs
+*.DS_Store

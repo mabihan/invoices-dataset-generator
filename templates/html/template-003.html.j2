@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Receipt page - {{ invoice.supplier.company }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="{{ base_dir }}/templates/assets/js/jquery-1.10.2.min.js"></script>
+   <link href="{{ base_dir }}/templates/assets/css/bootstrap.min.css" rel="stylesheet">
+   <script src="{{ base_dir }}/templates/assets/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="container bootdey">
+<div class="row invoice row-printable">
+    <div class="col-md-10">
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default plain" id="dash_0">
+            <!-- Start .panel -->
+            <div class="panel-body p30">
+                <div class="row">
+                    <!-- Start .row -->
+                    <div class="col-lg-6">
+                        <!-- col-lg-6 start here -->
+                        <div class="invoice-logo mt-4"><img width="100" src="{{ base_dir }}/templates/assets/images/png/{{ invoice.logo }}" alt="Invoice logo"></div>
+                    </div>
+                    <!-- col-lg-6 end here -->
+                    <div class="col-lg-6">
+                        <!-- col-lg-6 start here -->
+                        <div class="invoice-from">
+                            <ul class="list-unstyled text-right">
+                                <li>{{ invoice.supplier.company}}</li>
+                                <li>{{ invoice.supplier.address}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- col-lg-6 end here -->
+                    <div class="col-lg-12">
+                        <!-- col-lg-12 start here -->
+                        <div class="invoice-details mt25">
+                            <div class="well">
+                                <ul class="list-unstyled mb0">
+                                    <li><strong>Invoice</strong> #{{ invoice.metadata.order_id }}</li>
+                                    <li><strong>Invoice Date:</strong> {{ invoice.metadata.date_edited.strftime('%A, %B %d ,%Y')}}</li>
+                                    <li><strong>Due Date:</strong> {{ invoice.metadata.date_due.strftime('%A, %B %d ,%Y')}}</li>
+                                    <li><strong>Status:</strong> <span class="label label-danger">UNPAID</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="invoice-to mt25">
+                            <ul class="list-unstyled">
+                                <li><strong>Invoiced To</strong></li>
+                                <li>{{ invoice.client.company}}</li>
+                                <li>{{ invoice.client.address}}</li>
+                            </ul>
+                        </div>
+                        <div class="invoice-items">
+                            <div class="table-responsive" style="overflow: hidden; outline: none;" tabindex="0">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="per70 text-center">Description</th>
+                                            <th class="per5 text-center">Qty</th>
+                                            <th class="per25 text-center">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in invoice.order %}
+                                        <tr>
+                                            <td>{{ item.name }}</td>
+                                            <td class="text-center">{{ item.quantity }}</td>
+                                            <td class="text-center">{{ invoice.total.currency.sign }} {{ '%0.2f' % (item.quantity * item.unit_cost) }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2" class="text-right">Sub Total:</th>
+                                            <th class="text-center">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.sub_total }}</th>
+                                        </tr>
+                                        {% if invoice.total.is_discount_included %}
+                                        <tr>
+                                            <th colspan="2" class="text-right">{{ invoice.total.discount_rate }}% Discount:</th>
+                                            <th class="text-center">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.discount }}</th>
+                                        </tr>
+                                        {% endif %}
+                                        {% if invoice.total.is_shipping_included %}
+                                        <tr>
+                                            <th colspan="2" class="text-right">SHIPPING:</th>
+                                            <th class="text-center">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.shipping }}</th>
+                                        </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <th colspan="2" class="text-right">{{ invoice.total.tax_rate }}% VAT:</th>
+                                            <th class="text-center">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.tax }}</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" class="text-right">Credit:</th>
+                                            <th class="text-center">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.credit }}</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" class="text-right">Total:</th>
+                                            <th class="text-center">{{ invoice.total.currency.sign }} {{ '%0.2f' % invoice.total.total_after_tax }}</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="invoice-footer mt25">
+                            <p class="text-center">Generated on {{ invoice.metadata.date_edited.strftime('%A, %B %d ,%Y')}} <a href="#" class="btn btn-default ml15"><i class="fa fa-print mr5"></i> Print</a></p>
+                        </div>
+                    </div>
+                    <!-- col-lg-12 end here -->
+                </div>
+                <!-- End .row -->
+            </div>
+        </div>
+        <!-- End .panel -->
+    </div>
+    <!-- col-lg-12 end here -->
+</div>
+</div>
+
+<style type="text/css">
+body{
+    margin-top:10px;
+    background:#eee;    
+}
+</style>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

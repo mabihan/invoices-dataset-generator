@@ -2,8 +2,6 @@
 
 A python script that generates fake invoices.
 
-
-
 ## Installation
 
 The `setup.sh` script will install needed packages and python dependencies in a virtual environment. It supports macOs and Linux.
@@ -14,7 +12,7 @@ The `setup.sh` script will install needed packages and python dependencies in a 
 
 ## Usage
 
-All commands must me 
+To be able to use the script, you need to source the virtual environment that the package was installed in : `source .venv/bin/activate`
 
 ```bash
 usage: generate.py [-h] [-o OUT_DIR] [-d] [-m] [-k] [-b BATCH_SIZE] [-s] [-l LOCALES_LIST [LOCALES_LIST ...]]

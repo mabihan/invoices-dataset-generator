@@ -1,0 +1,6 @@
+gen-invoice
+faker
+pdfkit
+pdf2image
+Pillow
+img2pdf
