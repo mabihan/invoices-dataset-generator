@@ -2,6 +2,8 @@
 
 A python script that generates fake invoices.
 
+![examples](public/examples.png?raw=true)
+
 ## Installation
 
 The `setup.sh` script will install needed packages and python dependencies in a virtual environment. It supports macOs and Linux.
@@ -33,11 +35,30 @@ optional arguments:
                         List of locales used to fake data. Faker support multiples locale, see https://faker.readthedocs.io/en/master/locales.html
 ```
 
+Basic usage : 
 ```
-$ python generate.py -b 2                                                                                [19:17:01]
+$ python generate.py -b 2
 ✍️  Generating invoice 1/2
 ✍️  Generating invoice 2/2
 ```
+
+Use specific locales for fake data : 
+```
+$ python generate.py -l fr_FR de_DE en_GB es_ES -b 5
+✍️  Generating invoice 1/5
+✍️  Generating invoice 2/5
+✍️  Generating invoice 3/5
+✍️  Generating invoice 4/5
+✍️  Generating invoice 5/5
+```
+
+Add some defects : 
+```
+$ python generate.py -d
+✍️  Generating invoice 1/1
+```
+
+The invoices will be created in the `./dist` folder, or in the folder you want, using the `-o` flag.
 
 ## Credit
 
