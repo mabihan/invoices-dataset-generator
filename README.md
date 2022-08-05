@@ -62,7 +62,21 @@ $ python generate.py -d
 ✨  Generating invoice 1/1
 ```
 
+Extract metadata : The data used for building the template will be written in the output folder, in a JSON file.
+```
+$ python generate.py -m -b 2
+✨  Generating invoice 1/2
+✨  Generating invoice 2/2
+```
+
 The invoices will be created in the `./dist` folder, or in the folder you want, using the `-o` flag.
+
+## Next
+- [x] Publish on Github
+- [ ] Add many more jinja2 templates, from real world examples
+- [ ] Add more variations : PAID/UNPAID, stamps, different layout in the same template
+- [ ] Try to train [naiveHobo/InvoiceNet](https://github.com/naiveHobo/InvoiceNet) with the output data
+
 
 ## Credit
 
